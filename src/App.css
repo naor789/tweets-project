@@ -1,20 +1,61 @@
+body {
+  background-color: #15202b;
+  color: white;
+}
+
 .App {
-  text-align: center;
+  /* text-align: center; */
+  /* align-items: center; */
+}
+/* .container{
+    background-color: #15202B;
+} */
+
+.input-group {
+  /* display: block; */
+  background-color: #15202b;
+  border: none !important;
+  width: 600px !important;
+    align-items: center !important;
 
 }
 
-.input-group{
-  position: relative;
-}
-
-.form-control{
+.form-control {
   height: 180px !important;
+  /* position: relative; */
+  background-color: #15202b !important;
+  border: 1px solid white !important;
+    align-items: center !important;
+
 }
 
-.btn .btn-primary{
-    position: absolute;
+.tweet-list {
+  list-style-type: none;
 }
 
-.warning{
+.tweet {
+  background-color: #343a40;
+  border: 1px solid #343a40;
+  border-radius: 7px;
+  margin: 20px;
+  padding: 20px;
+  width: 600px;
+}
+
+.btn .btn-primary {
+  /* position: absolute; */
+    /* display: block !important; */
+
+}
+
+.warning {
   display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block !important;
 }

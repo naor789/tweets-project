@@ -3,10 +3,12 @@ import Tweet from "./Tweet";
 
 const TweetsList = (props) => {
     return (
-        <ul >
+        <ul className="tweet-list" >
             {props.tweets.map((tweet) => {
                 return (
-                    <Tweet key={tweet.id} content={tweet}       
+                    <Tweet
+                        key={tweet.id} date={tweet.date} userName={tweet.userName} content={tweet.content}
+                        // key={tweet.id} content={tweet}       
                     />
                 )
             }
