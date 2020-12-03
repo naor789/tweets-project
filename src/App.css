@@ -16,8 +16,8 @@ body {
   background-color: #15202b;
   border: none !important;
   width: 600px !important;
-    align-items: center !important;
-
+  align-items: center !important;
+  position: relative;
 }
 
 .form-control {
@@ -25,8 +25,7 @@ body {
   /* position: relative; */
   background-color: #15202b !important;
   border: 1px solid white !important;
-    align-items: center !important;
-
+  align-items: center !important;
 }
 
 .tweet-list {
@@ -42,10 +41,17 @@ body {
   width: 600px;
 }
 
-.btn .btn-primary {
-  /* position: absolute; */
-    /* display: block !important; */
+ .btn-primary {
+  position: absolute !important;
+    z-index: 99;
 
+  /* display: block !important; */
+}
+.btn {
+  position: absolute;
+  right: 30px;
+  bottom: 20px;
+  z-index: 99;
 }
 
 .warning {
@@ -59,3 +65,7 @@ body {
 .show {
   display: block !important;
 }
+
+/* .div-button{
+  display: block;
+} */

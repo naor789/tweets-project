@@ -1,11 +1,18 @@
 import React from 'react';
 import './App.css';
 import TweetsList from './Components/TweetsList';
-import TweetsForm from './Components/TweetsForm'
+import TweetsForm from './Components/TweetsForm';
+import UserName from './Components/UserName';
 import { getTweet } from "./lib/api"
 // import { createTweets } from "./lib/api"
 import axios from 'axios';
-
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import { Navbar, Nav } from "react-bootstrap"
 
 class App extends React.Component {
   constructor(props) {
@@ -14,7 +21,8 @@ class App extends React.Component {
       tweets: [],
       newTweet: "",
       loading: false,
-      errorMessage:""
+      userName:"",
+      errorMessage: ""
     }
   }
 
@@ -23,29 +31,20 @@ class App extends React.Component {
     this.loadUserData();
   }
 
-  // componentDidUpdate() {
-  //   this.render();
-  //   this.setState({ loading: false})
 
-  //  }
   async loadUserData() {
-    // this.setState({ loading: true });
     const response = await getTweet();
-    // this.setState({ user: { id: response.data.id, avatar: response.data.avatar, name: response.data.name, createdAt: response.data.createdAt } });
     this.setState({
-      tweets: response.data.tweets});
+      tweets: response.data.tweets
+    });
     console.log(response.data);
   }
 
-  // componentWillMount() {
-  //   localStorage.getItem('tweets') && this.setState({
-  //     tweets: JSON.parse(localStorage.getItem('tweets'))
-  //   })
-  // }
-  // componentWillUpdate(nextProps, nextState) {
-  //   localStorage.setItem('tweets', JSON.stringify(nextState.tweets))
-  // }
-
+  handleUserNameChange(userName) {
+    this.setState({
+      userName: userName,
+    });
+  }
 
   addTweet = (tweet) => {
     this.setState({ loading: true });
@@ -57,23 +56,43 @@ class App extends React.Component {
         this.setState({ loading: false })
         // this.setState({ tweets: [tweet, ...this.state.tweets] })
       }).catch(error => {
-        this.setState({ errorMessage: error.massage})
+        this.setState({ errorMessage: error.massage })
       })
-        // console.error(error))
+    // console.error(error))
   }
 
 
   render() {
     return (
-      <div className="container-sm">
-        <TweetsForm
-          addTweet={this.addTweet}
-          loading={this.state.loading}
-          errorMessage={this.state.errorMessage}
-        />
-        <TweetsList tweets={this.state.tweets}
-        />
-      </div>
+      <>
+        <Router>
+          <div className="container-sm">
+            <Navbar>
+              <Nav>
+                <Link to="/">Home</Link>
+                <Link to="/UserName">Profile</Link>
+              </Nav>
+            </Navbar>
+            <Switch>
+              <Route path="/UserName">
+                <UserName onUserNameChange={(userName) => this.handleUserNameChange(userName)}>
+                </UserName>
+              </Route>
+              <Route exact path="/">
+                <TweetsForm
+                  addTweet={this.addTweet}
+                  loading={this.state.loading}
+                  userName={this.state.userName}
+                  errorMessage={this.state.errorMessage}
+                />
+                <TweetsList tweets={this.state.tweets}
+                />
+              </Route>
+              
+            </Switch>
+          </div>
+        </Router>
+      </>
     );
   }
 }

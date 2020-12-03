@@ -18,7 +18,7 @@ class TweetsForm extends React.Component {
         this.setState({ loading: true })
         const tweet = {
             content: this.state.content,
-            userName: "Naor",
+            userName: this.props.userName === "" ? "Naor" : this.props.userName,
             date: new Date().toISOString(),
         }
         this.props.addTweet(tweet)
@@ -55,19 +55,20 @@ class TweetsForm extends React.Component {
                             value={this.state.content}
                             onChange={(event) => this.handleChange(event)}>
                         </input>
-                        {this.state.content.length > 140 || this.props.loading === true ?
-                            <button onClick={(event) => this.handleSubmit(event)} className="btn btn-primary" type="submit" disabled={true}>Tweet</button>
-                            : <button onClick={(event) => this.handleSubmit(event)} className="btn btn-primary" type="submit">Tweet</button>}
-                        <p> {this.props.errorMessage} </p>
-                        {this.state.content.length > 140 ?
-                            <div className="warning"> Tweet can't contain more than 140 chars </div>
-                            : <span></span>}
-                        {this.props.loading === true ?
-                            <div className="spinner-border" role="status">
-                                <span className="sr-only"></span>
-                            </div>
-                            : <span></span>}
-
+                        <div className="div-button">
+                            {this.state.content.length > 140 || this.props.loading === true ?
+                                <button onClick={(event) => this.handleSubmit(event)} className="btn btn-primary" type="submit" disabled={true}>Tweet</button>
+                                : <button onClick={(event) => this.handleSubmit(event)} className="btn btn-primary" type="submit">Tweet</button>}
+                            <p> {this.props.errorMessage} </p>
+                            {this.state.content.length > 140 ?
+                                <div className="warning"> Tweet can't contain more than 140 chars </div>
+                                : <span></span>}
+                            {this.props.loading === true ?
+                                <div className="spinner-border" role="status">
+                                    <span className="sr-only"></span>
+                                </div>
+                                : <span></span>}
+                        </div>
                     </div>
                 </form>
             </>
