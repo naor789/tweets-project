@@ -13,7 +13,7 @@ import {
   Link
 } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap"
-import {TweetsProvider} from './Components/TweetsContext'
+import { TweetsContext } from './Components/TweetsContext'
 
 class App extends React.Component {
   constructor(props) {
@@ -29,8 +29,11 @@ class App extends React.Component {
 
 
   componentDidMount() {
-    this.loadUserData();
+    const interval = setInterval(() => {
+      this.loadUserData();
+    }, 1000);
   }
+
 
 
   async loadUserData() {
@@ -38,7 +41,6 @@ class App extends React.Component {
     this.setState({
       tweets: response.data.tweets
     });
-    console.log(response.data);
   }
 
   handleUserNameChange(userName) {
@@ -64,10 +66,17 @@ class App extends React.Component {
 
 
   render() {
+    const { tweets, newTweet, loading, userName, errorMessage } = this.state
     return (
       <>
         <Router>
-          <TweetsProvider value={this.state}>
+          <TweetsContext.Provider value={{
+            tweets: tweets,
+            newTweet: newTweet,
+            loading: loading,
+            userName: userName,
+            errorMessage: errorMessage,
+          }} >
             <div className="container-sm">
               <Navbar className="">
                 <Nav>
@@ -93,7 +102,7 @@ class App extends React.Component {
 
               </Switch>
             </div>
-          </TweetsProvider>
+          </TweetsContext.Provider>
         </Router>
       </>
     );

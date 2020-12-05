@@ -1,9 +1,12 @@
 import React from 'react';
 
-const TweetsContext = React.createContext();
+export const TweetsContext = React.createContext({
+    tweets: [],
+    newTweet: "",
+    loading: false,
+    userName: "",
+    errorMessage: "",
+});
 
-const TweetsProvider = TweetsContext.Provider;
-const TweetsConsumer = TweetsContext.Consumer;
 
 
-export {TweetsProvider , TweetsConsumer }
