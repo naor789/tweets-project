@@ -3,21 +3,14 @@ body {
   color: white;
 }
 
-.App {
-  /* text-align: center; */
-  /* align-items: center; */
-}
-/* .container{
-    background-color: #15202B;
-} */
-
 .input-group {
   /* display: block; */
   background-color: #15202b;
   border: none !important;
   width: 600px !important;
   align-items: center !important;
-  position: relative;
+  position: relative !important;
+  margin-left: 62px !important;
 }
 
 .form-control {
@@ -41,9 +34,9 @@ body {
   width: 600px;
 }
 
- .btn-primary {
+.btn-primary {
   position: absolute !important;
-    z-index: 99;
+  z-index: 99;
 
   /* display: block !important; */
 }
@@ -58,14 +51,36 @@ body {
   display: block;
 }
 
-.hide {
-  display: none;
-}
-
-.show {
-  display: block !important;
-}
-
-/* .div-button{
+.username {
   display: block;
-} */
+  width: 600px;
+  margin: 0 115px;
+}
+
+.username-form {
+  position: relative;
+  align-items: center;
+}
+
+.username-label{
+  margin-left: 117px;
+  margin-top: 126px;
+}
+
+.username-button {
+  position: absolute !important;
+  top: 200px !important;
+  left: 653px !important;
+  height: 34px !important;
+  width: 68px !important;
+  text-align: center;
+}
+
+.note-date {
+  color: #6c757d;
+  align-self: start;
+}
+
+.tweet-date {
+  margin-left: 260px;
+}

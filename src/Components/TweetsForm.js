@@ -63,14 +63,17 @@ class TweetsForm extends React.Component {
                             {this.state.content.length > 140 ?
                                 <div className="warning"> Tweet can't contain more than 140 chars </div>
                                 : <span></span>}
-                            {this.props.loading === true ?
-                                <div className="spinner-border" role="status">
-                                    <span className="sr-only"></span>
-                                </div>
-                                : <span></span>}
                         </div>
                     </div>
                 </form>
+                {this.props.loading === true ?
+                    <div className="d-flex justify-content-center" role="status">
+                        <div className="spinner-border">
+                         <span className="sr-only"></span>
+                        </div>
+                    </div>
+                    : <span></span>}
+
             </>
         )
     }

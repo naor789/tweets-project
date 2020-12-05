@@ -13,6 +13,7 @@ import {
   Link
 } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap"
+import {TweetsProvider} from './Components/TweetsContext'
 
 class App extends React.Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class App extends React.Component {
       tweets: [],
       newTweet: "",
       loading: false,
-      userName:"",
+      userName: "",
       errorMessage: ""
     }
   }
@@ -66,31 +67,33 @@ class App extends React.Component {
     return (
       <>
         <Router>
-          <div className="container-sm">
-            <Navbar>
-              <Nav>
-                <Link to="/">Home</Link>
-                <Link to="/UserName">Profile</Link>
-              </Nav>
-            </Navbar>
-            <Switch>
-              <Route path="/UserName">
-                <UserName onUserNameChange={(userName) => this.handleUserNameChange(userName)}>
-                </UserName>
-              </Route>
-              <Route exact path="/">
-                <TweetsForm
-                  addTweet={this.addTweet}
-                  loading={this.state.loading}
-                  userName={this.state.userName}
-                  errorMessage={this.state.errorMessage}
-                />
-                <TweetsList tweets={this.state.tweets}
-                />
-              </Route>
-              
-            </Switch>
-          </div>
+          <TweetsProvider value={this.state}>
+            <div className="container-sm">
+              <Navbar className="">
+                <Nav>
+                  <Link to="/">Home</Link>
+                  <Link to="/UserName">Profile</Link>
+                </Nav>
+              </Navbar>
+              <Switch>
+                <Route path="/UserName">
+                  <UserName onUserNameChange={(userName) => this.handleUserNameChange(userName)}>
+                  </UserName>
+                </Route>
+                <Route exact path="/">
+                  <TweetsForm
+                    addTweet={this.addTweet}
+                    loading={this.state.loading}
+                    userName={this.state.userName}
+                    errorMessage={this.state.errorMessage}
+                  />
+                  <TweetsList tweets={this.state.tweets}
+                  />
+                </Route>
+
+              </Switch>
+            </div>
+          </TweetsProvider>
         </Router>
       </>
     );
