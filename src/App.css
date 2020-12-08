@@ -1,46 +1,38 @@
 body {
-  background-color: #15202b;
+  background-color: #15202b !important;
   color: white;
 }
 
-.input-group {
-  /* display: block; */
+.input-tweets {
   background-color: #15202b;
   border: none !important;
-  width: 600px !important;
-  align-items: center !important;
   position: relative !important;
-  margin-left: 62px !important;
 }
 
-.form-control {
+.input-tweets-text {
   height: 180px !important;
-  /* position: relative; */
   background-color: #15202b !important;
   border: 1px solid white !important;
-  align-items: center !important;
 }
 
 .tweet-list {
   list-style-type: none;
+  padding: 0;
 }
 
 .tweet {
-  background-color: #343a40;
-  border: 1px solid #343a40;
-  border-radius: 7px;
-  margin: 20px;
-  padding: 20px;
-  width: 600px;
+  background-color: #343a40 !important;
+  border: 1px solid #343a40 !important;
+  border-radius: 7px !important;
+  width: 600px !important;
+ 
 }
 
-.btn-primary {
+.tweets-button {
   position: absolute !important;
   z-index: 99;
-
-  /* display: block !important; */
 }
-.btn {
+.button {
   position: absolute;
   right: 30px;
   bottom: 20px;
@@ -62,9 +54,10 @@ body {
   align-items: center;
 }
 
-.username-label{
+.username-label {
   margin-left: 117px;
   margin-top: 126px;
+  color: white;
 }
 
 .username-button {
@@ -76,11 +69,52 @@ body {
   text-align: center;
 }
 
-.note-date {
+.navbar {
+  background-color: #343a40;
+  justify-content: space-between;
+}
+
+.tweet-user {
   color: #6c757d;
-  align-self: start;
 }
 
 .tweet-date {
-  margin-left: 260px;
+  color: #6c757d;
+  margin-left: 370px;
 }
+
+.note-text {
+  color: white;
+}
+
+.link {
+  margin-left: 40px;
+  text-decoration: none;
+  color: white;
+}
+
+.link:hover {
+  text-decoration: none;
+  color: #6c757d;
+}
+
+.sing-up {
+  color: white !important;
+}
+
+.log-in {
+  color: white !important;
+}
+
+.link-blue {
+  margin-left: 5px;
+  text-decoration: none;
+  color: #007bff;
+}
+
+.link-blue:hover {
+  text-decoration: none;
+  color: cadetblue;
+}
+
+

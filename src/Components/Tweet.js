@@ -1,19 +1,29 @@
 import React from 'react';
-import context from 'react-bootstrap/esm/AccordionContext';
-import { TweetsContext } from './TweetsContext';
+
 
 function Tweet(props) {
-
+    const { date, userName, content } = props.tweet.tweet;
     return (
         <>
-
-
-            <li className="tweet">
-                <span className="tweet-user"> {props.userName} </span>
-                <span className="tweet-date">{new Date(props.date).toLocaleString()} </span>
-                {/* <h1 className="h1-note">{props.content.username}</h1> */}
-                <p className="note-text">{props.content}</p>
-            </li >
+            <div
+                className="tweet container shadow pl-3 pr-3 pt-2 pb-2 mb-2 ml-2  rounded mx-auto  w-50 bg-dark  "
+                style={{ fontSize: "14px" }}
+            >
+                <div className="row text-muted">
+                    <div className="col ">
+                        <p>{userName}</p>
+                    </div>
+                    <div className="col-10 text-right">
+                        <p>{new Date(date).toString()}</p>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col text-white">
+                        <p>{content}</p>
+                    </div>
+                </div>
+            </div>
+          
 
         </>)
 }

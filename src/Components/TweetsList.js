@@ -14,9 +14,7 @@ const TweetsList = (props) => {
 
                                 <Tweet
                                     key={tweet.id}
-                                    date={tweet.date}
-                                    userName={tweet.userName}
-                                    content={tweet.content}
+                                    tweet={tweet}
                                 />
 
                             );

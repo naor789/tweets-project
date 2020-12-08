@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { createTweets } from "../lib/api"
+import React from 'react';
 
 
 class TweetsForm extends React.Component {
@@ -7,7 +6,6 @@ class TweetsForm extends React.Component {
         super(props);
         this.state = {
             content: "",
-            loading: false
 
         }
     }
@@ -15,24 +13,17 @@ class TweetsForm extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault(event);
-        this.setState({ loading: true })
         const tweet = {
             content: this.state.content,
-            userName: this.props.userName === "" ? "Naor" : this.props.userName,
-            date: new Date().toISOString(),
+            userName: this.props.userName,
+            date: Date.now(),
+
         }
         this.props.addTweet(tweet)
         this.setState({
             content: "",
         });
-        // localStorage.setItem(tweet);
     }
-    // this.props.onSetResult = (note) => {
-    //     localStorage.setItem(note);
-
-    // }
-    //   }
-
 
 
     handleChange(event) {
@@ -46,19 +37,19 @@ class TweetsForm extends React.Component {
     render() {
         return (
             <>
-                <form className="form mt-5" onSubmit={(event) => this.handleSubmit(event)}>
-                    <div className="input-group">
+                <form className="mx-auto  w-50 p-4 position-relative" onSubmit={(event) => this.handleSubmit(event)}>
+                    <div className="input-group input-tweets ">
                         <input type="text"
-                            className="form-control "
+                            className="form-control input-tweets-text"
                             placeholder="What you have in mind..."
                             id="usersTweet"
                             value={this.state.content}
                             onChange={(event) => this.handleChange(event)}>
                         </input>
                         <div className="div-button">
-                            {this.state.content.length > 140 || this.props.loading === true ?
-                                <button onClick={(event) => this.handleSubmit(event)} className="btn btn-primary" type="submit" disabled={true}>Tweet</button>
-                                : <button onClick={(event) => this.handleSubmit(event)} className="btn btn-primary" type="submit">Tweet</button>}
+                            {this.state.content.length > 140 ?
+                                <button onClick={(event) => this.handleSubmit(event)} className="btn btn-primary tweets-button button" type="submit" disabled={true}>Tweet</button>
+                                : <button onClick={(event) => this.handleSubmit(event)} className="btn btn-primary tweets-button button" type="submit">Tweet</button>}
                             <p> {this.props.errorMessage} </p>
                             {this.state.content.length > 140 ?
                                 <div className="warning"> Tweet can't contain more than 140 chars </div>
@@ -66,14 +57,6 @@ class TweetsForm extends React.Component {
                         </div>
                     </div>
                 </form>
-                {this.props.loading === true ?
-                    <div className="d-flex justify-content-center" role="status">
-                        <div className="spinner-border">
-                         <span className="sr-only"></span>
-                        </div>
-                    </div>
-                    : <span></span>}
-
             </>
         )
     }
