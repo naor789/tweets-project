@@ -15,7 +15,7 @@ class TweetsForm extends React.Component {
         event.preventDefault(event);
         const tweet = {
             content: this.state.content,
-            userName: this.props.userName,
+            userName: this.props.userName === "" ? "Naor" : this.props.userName,
             date: Date.now(),
 
         }
